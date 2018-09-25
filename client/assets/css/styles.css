@@ -1,0 +1,390 @@
+
+/*GLOBAL*/
+
+html,body{
+	margin:0px;
+	height: 100%;
+	background: #aaa;
+}
+
+.actived{
+	border-bottom: 4px solid #84BD00;
+	padding-bottom: 4px;
+}
+
+.central{
+	height: 100%;
+	overflow-y: scroll;
+}
+
+
+/*BARRA LATERAL*/
+
+.head-title{
+	font-size: 20px;
+	font-weight: bold;
+	text-transform:uppercase;
+	margin-bottom: 25px;
+	display: block;
+}
+
+
+.navigation{
+	text-align: center;
+	color:white;
+	background: #1C1C1F;
+	height: 100%;
+}
+
+.navigation a{
+	color:#ddd;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display:block;
+	text-decoration: none;
+}
+
+.navigation a:hover{
+	color:white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	display:block;
+	text-decoration: none;
+}
+
+.navigation .glyphicon,
+.navigation .ionicons{
+	font-size: 25px;
+	display:block;
+	width: 100%;
+}
+
+#user_logged{
+	text-decoration: center;
+	background: #1C1C1F;
+	position: absolute;
+	bottom:0px;
+	border-top: 1px solid #444;
+	width: 75%;
+}
+
+#user_logged .user-image{
+	background: #eee;
+	border-radius: 100px;
+	height: 57px;
+	width: 57px;
+	margin: 0px auto;
+	margin-top: 15px;
+	overflow: hidden;
+}
+
+#user_logged .user-image img{
+	width: 57px;
+	height: 57px;
+}
+
+.btn-logout{
+	cursor:pointer;
+}
+
+.identificar,
+.registrar{
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+    height: 900px;
+}
+
+.closeSesion{
+    margin-bottom: 2%;
+}
+
+.errorLogin,
+.errorRegister{
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.formIdentificar{
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: left;
+}
+
+.formEdit{
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: left;
+}
+
+.changeView{
+    margin-top: 5%;
+}
+
+.token{
+    margin-top: 2%;
+}
+
+.editUser,
+.editUser h1{
+    text-align: center;
+    margin-top: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.sportAdd{
+	text-align: left;
+	margin-top: 5%;
+	margin-left: 15%;
+	margin-right: 15%;
+}
+
+.sportAdd h1{
+	text-align: center;
+}
+
+
+.head-title-user{
+    text-align: center;
+    margin-top:7%;
+	font-size: 20px;
+	font-weight: bold;
+	text-transform:uppercase;
+	margin-bottom: 25px;
+	display: block;
+}
+
+.sport_image_for_edit img{
+	width: 15%;
+	margin:1%;
+}
+
+.sport_image_for_edit img{
+	width:15%;
+}
+
+.sport-list{
+	margin:0px;
+	padding: 0px;
+	margin-top:30px;
+	list-style: none;
+}
+
+.reglas-deporte,
+.categoria-deporte{
+	margin-top: 2%;
+}
+
+.reglas-cuadro,
+.categorias-cuadro{
+	text-align: left;
+	list-style: none;
+	border: 2px solid #444;
+	border-radius: 1%;
+	max-height: 250px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background: #c0c0c0;
+}
+
+.sport-item{
+	width:22%;
+	margin: 0px;
+	padding: 0px;
+	height: 317px;
+	border: 1px solid #444;
+	border-radius: 5%;
+	overflow: hidden;
+	margin-left: 20px;
+	margin-top:1%;
+	background: rgb(43, 40, 40);
+	text-align: center;
+	/*margin-top: 20px;*/
+}
+
+.team-item{
+	width:22%;
+	margin: 0px;
+	padding: 0px;
+	height: 317px;
+	border: 1px solid #444;
+	border-radius: 5%;
+	overflow: hidden;
+	margin-left: 20px;
+	margin-top:1%;
+	background: white;
+	text-align: center;
+	/*margin-top: 20px;*/
+}
+
+
+
+.name-deporte-detail{
+	margin-top: 1%;
+	margin-left: 2%;
+	width: 83%;
+	float: right;
+}
+
+.name-deporte-detail h1{
+	font-size: 60px;
+	font-weight: bolder;
+}
+
+.name-deporte-detail p{
+	font-size: 20px;
+}
+
+
+.image-deporte-detail img{
+	width: 15%;
+	margin-top: 1%;
+}
+
+.sport-item a:hover
+.team-item a:hover{
+	color: #a9aebd
+	/*margin-top: 20px;*/
+}
+
+.sport-item a{
+	color:rgb(226, 206, 206)
+	/*margin-top: 20px;*/
+}
+.sport-item .sport-image{
+	height: 84%;
+	width: 100%;
+	overflow: hidden;
+	background: black;
+}
+
+.sport-item .team-image{
+	height: 84%;
+	width: 100%;
+	overflow: hidden;
+	background: white;
+}
+
+.sport-item .sport-image img,
+.sport-item .team-image img{
+	height: 100%;
+	display:block;
+	margin:auto;
+}
+
+.sport-item .sport-name{
+	color:white;
+	padding: 10px;
+	background: #222326;
+}
+
+.sport-item .sport-name a{
+	color:white;
+}
+
+.sport-list .buttons,
+.sport-list .seguro{
+	text-align: center;
+}
+
+.sport-list .btn{
+	width: 25%;
+}
+
+.sport-pagination{
+	width: 100%;
+	text-align: center;
+}
+
+.rule-description,
+.category-description{
+	text-align: left;
+	margin-top: 0.5%;
+	margin-bottom: 0.5%;
+}
+
+
+
+.add-regla{
+	margin-top: 1%;
+	margin-bottom:1%;
+	text-align: right;
+}
+
+
+.reglas-deporte{
+	text-align: left;
+}
+
+.categorias-deporte{
+	text-align: left;
+}
+
+.button-regla,
+.button-category{
+	margin-top: 1%;
+}
+
+
+.edit-regla,
+.delete-regla{
+	margin-left:0.5%; 
+}
+
+.name-category{
+	margin-top:1.5%; 
+}
+
+
+.pro-category{
+	margin-top: 6%;
+}
+
+.btn-sm{
+	margin-left:1%;
+}
+
+.lista-deportes{
+	overflow-y: scroll;
+}
+
+.team-head-card{
+	border-bottom:2px #1C1C1F;
+}
+
+.image-team-detail img{
+	width: 15%;
+	margin-top: 1%;
+}
+
+.image-team-detail{
+	border-bottom: #1C1C1F 1px;
+}
+
+.actual-game{
+	margin: 0px;
+	padding: 0px;
+	height: 317px;
+	border: 1px solid #444;
+	border-radius: 1%;
+	overflow: hidden;
+	margin-left: 20px;
+	margin-top:1%;
+	background: white;
+	text-align: center;
+	/*margin-top: 20px;*/
+}
+
+.team-game img{
+	width: 30%
+}
+
+.team-game p{
+	font-size:30px;
+}
+
+agm-map{
+    height: 300px;
+}

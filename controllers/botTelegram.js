@@ -65,25 +65,21 @@ bot.onText(/^\/autorizaToken$/, (msg) => {
 });
 
 bot.onText(/^\/desautorizaToken$/, (msg) => {
-    IdAuthorized.deleteOne({idTelegram:msg.chat.id},(err,idAuthorized)=>{
+    IdAuthorized.findOneAndDelete({idTelegram:msg.chat.id},(err,idAuthorized)=>{
         if(err){
             bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token");
         }else{
             if(!idAuthorized){
                 bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token, puede que no estuviera autorizado");
             }else{
-                console.log(IdAuthorized)
                 if(idAuthorized.user&&idAuthorized.user!==null){
                     User.findById(idAuthorized.user,(err,userFinded)=>{
                         if(err){
                             bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token");
                         }else{
-                            
                             if(userFinded && userFinded!==null){
-                                console.log("llego1")
                                 userFinded.role="ROLE_USER";
                                 userFinded.save((err,userSaved)=>{
-                                    console.log("llego2")
                                     if(err){
                                         bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token");
                                     }else{

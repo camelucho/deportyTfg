@@ -78,32 +78,6 @@ bot.onText(/^\/desautorizaToken$/, (msg) => {
     });
 });
 
-bot.onText(/^\/reiniciarId$/, (msg) => {
-    var user = new User();
-    user.idTelegram = null;
-    IdAuthorized.updateMany({idTelegram:msg.chat.id},{$set: {user:null}},(err,idTelegram)=>{
-        if(err){
-            bot.sendMessage(msg.chat.id, "No se ha podido borrar ningun id");
-        }else{
-            if(!idTelegram){
-                bot.sendMessage(msg.chat.id, "No hay ningun usuario con ese id de telegram");
-            }else{
-                User.updateMany({_id:idTelegram.user},{$set: {idTelegram:user.idTelegram,role:'ROLE_USER'}},(err,userUpdated)=>{
-                    if(err){
-                        bot.sendMessage(msg.chat.id, "No se ha podido borrar ningun id");
-                    }else{
-                        if(!userUpdated){
-                            bot.sendMessage(msg.chat.id, "No hay ningun usuario con ese id de telegram");
-                        }else{
-                            bot.sendMessage(msg.chat.id, "Se han eliminado los ids de telegram con tu id");
-                        }
-                    }
-                })
-            }
-        }
-    })
-   
-});
 
 //Espectadores
 

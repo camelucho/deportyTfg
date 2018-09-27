@@ -72,13 +72,14 @@ bot.onText(/^\/desautorizaToken$/, (msg) => {
             if(!idAuthorized){
                 bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token, puede que no estuviera autorizado");
             }else{
-                if(idAuthorized.user&&idAuthorized.user!=null){
+                console.log(IdAuthorized)
+                if(idAuthorized.user&&idAuthorized.user!==null){
                     User.findById(idAuthorized.user,(err,userFinded)=>{
                         if(err){
                             bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token");
                         }else{
-                            console.log("llego")
-                            if(userFinded && userFinded!=null){
+                            
+                            if(userFinded && userFinded!==null){
                                 console.log("llego1")
                                 userFinded.role="ROLE_USER";
                                 userFinded.save((err,userSaved)=>{

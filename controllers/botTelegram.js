@@ -41,12 +41,12 @@ function cadenaAleatoria(longitud, caracteres) {
 };
 
 
-bot.onText(/^\/id/,(msg)=>{
+bot.onText(/^\/id$/,(msg)=>{
 	bot.sendMessage(msg.chat.id, msg.chat.id);
  });
 
 
-bot.onText(/^\/autorizaToken/, (msg) => {
+bot.onText(/^\/autorizaToken$/, (msg) => {
     var idAuthorized = new IdAuthorized();
     idAuthorized.idTelegram=msg.chat.id;
     idAuthorized.authorized = true;
@@ -64,7 +64,7 @@ bot.onText(/^\/autorizaToken/, (msg) => {
     });
 });
 
-bot.onText(/^\/desautorizaToken/, (msg) => {
+bot.onText(/^\/desautorizaToken$/, (msg) => {
     IdAuthorized.deleteOne({idTelegram:msg.chat.id},(err,idAuthorized)=>{
         if(err){
             bot.sendMessage(msg.chat.id, "No se ha podido autorizar el token, puede que ya esté autorizado");
@@ -78,7 +78,7 @@ bot.onText(/^\/desautorizaToken/, (msg) => {
     });
 });
 
-bot.onText(/^\/reiniciarId/, (msg) => {
+bot.onText(/^\/reiniciarId$/, (msg) => {
     var user = new User();
     user.idTelegram = null;
     IdAuthorized.updateMany({idTelegram:msg.chat.id},{$set: {user:null}},(err,idTelegram)=>{
@@ -107,7 +107,7 @@ bot.onText(/^\/reiniciarId/, (msg) => {
 
 //Espectadores
 
-bot.onText(/^\/partidosCercanos/, (msg) => {
+bot.onText(/^\/partidosCercanos$/, (msg) => {
    
         const opts = {
           reply_markup: JSON.stringify({
@@ -266,10 +266,12 @@ bot.onText(/^\/partidosCercanos/, (msg) => {
         if(!tieneSession){
             bot.sendMessage(msg.chat.id,"Tienes que buscar partidos primero con el comando: /partidosCercanos");
         }
+    }else{
+        bot.sendMessage(msg.chat.id,"Tienes que introducir un número");
     }
   });
 
-  bot.onText(/^\/partidosQueSigo/, (msg) => {
+  bot.onText(/^\/partidosQueSigo$/, (msg) => {
     var sesionUsuario;
     for(var x = 0;x<sesion.length;x++){
         if(sesion[x].idTelegram==msg.chat.id){
@@ -404,6 +406,8 @@ bot.onText(/^\/partidosCercanos/, (msg) => {
         if(!tieneSession){
             bot.sendMessage(msg.chat.id,"Tienes que buscar los partidos que estas presenciado primero con el comando: /partidosQueEspecto");
         }
+    }else{
+        bot.sendMessage(msg.chat.id,"Tienes que introducir un número");
     }
   });
 
@@ -428,6 +432,8 @@ bot.onText(/^\/partidosCercanos/, (msg) => {
         if(!tieneSession){
             bot.sendMessage(msg.chat.id,"Tienes que buscar partidos primero con el comando: /partidosCercanos");
         }
+    }else{
+        bot.sendMessage(msg.chat.id,"Tienes que introducir un número");
     }
   });
 
@@ -454,6 +460,8 @@ bot.onText(/^\/partidosCercanos/, (msg) => {
         if(!tieneSession){
             bot.sendMessage(msg.chat.id,"Tienes que buscar los partidos que espectas primero con el comando: /partidosQueEspecto");
         }
+    }else{
+        bot.sendMessage(msg.chat.id,"Tienes que introducir un número");
     }
   });
 
@@ -495,6 +503,8 @@ bot.onText(/^\/partidosCercanos/, (msg) => {
         if(!tieneSession){
             bot.sendMessage(msg.chat.id,"Tienes que buscar partidos primero con el comando: /partidosCercanos");
         }
+    }else{
+        bot.sendMessage(msg.chat.id,"Tienes que introducir un número");
     }
   });
 
@@ -536,11 +546,13 @@ bot.onText(/^\/partidosCercanos/, (msg) => {
         if(!tieneSession){
             bot.sendMessage(msg.chat.id,"Tienes que buscar partidos primero con el comando: /partidosCercanos");
         }
+    }else{
+        bot.sendMessage(msg.chat.id,"Tienes que introducir un número");
     }
   });
 
   //Locutores
-  bot.onText(/^\/empezarPartido/, (msg) => {
+  bot.onText(/^\/empezarPartido$/, (msg) => {
       IdAuthorized.find({idTelegram:msg.chat.id},(err,resIdAuthorized)=>{
         if(err){
 
@@ -607,7 +619,7 @@ bot.onText(/^\/partidosCercanos/, (msg) => {
     }
 });
 
-bot.onText(/^\/terminarPartido/, (msg) => {
+bot.onText(/^\/terminarPartido$/, (msg) => {
     IdAuthorized.find({idTelegram:msg.chat.id},(err,resIdAuthorized)=>{
         if(err){
 
@@ -639,7 +651,7 @@ bot.onText(/^\/terminarPartido/, (msg) => {
     });
 });
 
-bot.onText(/^\/anularPartido/, (msg) => {
+bot.onText(/^\/anularPartido$/, (msg) => {
     IdAuthorized.find({idTelegram:msg.chat.id},(err,resIdAuthorized)=>{
         if(err){
 
@@ -727,7 +739,7 @@ bot.onText(/^\/anularPartido/, (msg) => {
     }).populate({path:'team'});
   }
 
-  bot.onText(/^\/espectadoresPartido/, (msg) => {
+  bot.onText(/^\/espectadoresPartido$/, (msg) => {
     IdAuthorized.find({idTelegram:msg.chat.id},(err,resIdAuthorized)=>{
         if(err){
 

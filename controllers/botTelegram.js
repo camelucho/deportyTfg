@@ -67,12 +67,34 @@ bot.onText(/^\/autorizaToken$/, (msg) => {
 bot.onText(/^\/desautorizaToken$/, (msg) => {
     IdAuthorized.deleteOne({idTelegram:msg.chat.id},(err,idAuthorized)=>{
         if(err){
-            bot.sendMessage(msg.chat.id, "No se ha podido autorizar el token, puede que ya esté autorizado");
+            bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token");
         }else{
             if(!idAuthorized){
-                bot.sendMessage(msg.chat.id, "No se ha podido autorizar el token, puede que ya esté autorizado");
+                bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token, puede que no estuviera autorizado");
             }else{
-                bot.sendMessage(msg.chat.id, "Se ha desautorizado el token");
+                if(idAuthorized.user&&idAuthorized.user!=null){
+                    User.findById(idAuthorized.user,(err,userFinded)=>{
+                        if(err){
+                            bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token");
+                        }else{
+                            if(userFinded && userFinded!=null){
+                                userFinded.role="ROLE_USER";
+                                userFinded.save((err,userSaved)=>{
+                                    if(err){
+                                        bot.sendMessage(msg.chat.id, "No se ha podido desautorizar el token");
+                                    }else{
+                                        bot.sendMessage(msg.chat.id, "Se ha desautorizado el token"); 
+                                    }
+                                });
+                                bot.sendMessage(msg.chat.id, "Se ha desautorizado el token");
+                            }else{
+                                bot.sendMessage(msg.chat.id, "Se ha desautorizado el token");
+                            }
+                        }
+                    });
+                }else{
+                    bot.sendMessage(msg.chat.id, "Se ha desautorizado el token");
+                }
             }
         }
     });

@@ -86,7 +86,6 @@ bot.onText(/^\/desautorizaToken$/, (msg) => {
                                         bot.sendMessage(msg.chat.id, "Se ha desautorizado el token"); 
                                     }
                                 });
-                                bot.sendMessage(msg.chat.id, "Se ha desautorizado el token");
                             }else{
                                 bot.sendMessage(msg.chat.id, "Se ha desautorizado el token");
                             }

@@ -216,7 +216,7 @@ function confirmarTokenTelegram(req,res){
 										res.status(404).send({message:'No se ha podido actualizar el rol'});
 									}else{
 										if(!userUpdated){
-											res.status(404).send({message:'No se ha introducido el id de telegram correctamente'});
+											res.status(404).send({message:'No se ha introducido el token correctamente'});
 										}else{
 											res.status(200).send({idAuthorizedUpdated:idAuthorizedUpdated});
 										}

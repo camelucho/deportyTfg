@@ -204,7 +204,7 @@ function confirmarTokenTelegram(req,res){
 			}else{
 				var day = new Date();
 				if(telegramDataFinded[0].generationDate.getTime()+minutosToken*minutosAMilisegundos> day.getTime()){
-					IdAuthorized.updateOne({idTelegram:telegramDataFinded[0].idTelegram},{$set: {user:userId}},(err,idAuthorizedUpdated)=>{
+					IdAuthorized.findOneAndUpdate({idTelegram:telegramDataFinded[0].idTelegram},{$set: {user:userId}},(err,idAuthorizedUpdated)=>{
 						if(err){
 							res.status(500).send({message:'Error en el servidor, otro usuario ya tiene ese id. Para poder asignarselo a esta cuenta tienes que ir a telegram y poner el comando: /reiniciarId'});
 						}else{

@@ -193,14 +193,13 @@ function generarTokenTelegram(req,res){
 function confirmarTokenTelegram(req,res){
 	var userId = req.params.id;
 	var token= req.body.token;
-	
 	var update = new Object();
 	TelegramData.find({user:userId,token:token},(err,telegramDataFinded)=>{
 		if(err){
 			res.status(500).send({message:'Error en el servidor'});
 		}else{
 			if(!telegramDataFinded[0]){
-				res.status(404).send({message:'Error al actualizar el token del usuario'});
+				res.status(404).send({message:'Error: token o usuario incorrecto'});
 			}else{
 				var day = new Date();
 				if(telegramDataFinded[0].generationDate.getTime()+minutosToken*minutosAMilisegundos> day.getTime()){

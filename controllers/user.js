@@ -196,7 +196,6 @@ function confirmarTokenTelegram(req,res){
 	
 	var update = new Object();
 	TelegramData.find({user:userId,token:token},(err,telegramDataFinded)=>{
-		console.log(telegramDataFinded);
 		if(err){
 			res.status(500).send({message:'Error en el servidor'});
 		}else{
@@ -204,30 +203,34 @@ function confirmarTokenTelegram(req,res){
 				res.status(404).send({message:'Error al actualizar el token del usuario'});
 			}else{
 				var day = new Date();
-				if(telegramDataFinded[0].generationDate.getTime()+minutosToken*minutosAMilisegundos> day.getTime()){
-					IdAuthorized.findOneAndUpdate({idTelegram:telegramDataFinded[0].idTelegram},{$set: {user:userId}},(err,idAuthorizedUpdated)=>{
-						if(err){
-							res.status(500).send({message:'Error en el servidor, otro usuario ya tiene ese id. Para poder asignarselo a esta cuenta tienes que ir a telegram y poner el comando: /reiniciarId'});
-						}else{
-							if(!idAuthorizedUpdated){
-								res.status(404).send({message:'Error al actualizar el token del usuario'});
+				if(telegramDataFinded[0].token==token){
+					if(telegramDataFinded[0].generationDate.getTime()+minutosToken*minutosAMilisegundos> day.getTime()){
+						IdAuthorized.findOneAndUpdate({idTelegram:telegramDataFinded[0].idTelegram},{$set: {user:userId}},(err,idAuthorizedUpdated)=>{
+							if(err){
+								res.status(500).send({message:'Error en el servidor, otro usuario ya tiene ese id. Para poder asignarselo a esta cuenta tienes que ir a telegram y poner el comando: /reiniciarId'});
 							}else{
-								User.updateMany({_id:userId},{$set: {role:'ROLE_LOCUTOR'}},(err,userUpdated)=>{
-									if(err){
-										res.status(404).send({message:'No se ha podido actualizar el rol'});
-									}else{
-										if(!userUpdated){
-											res.status(404).send({message:'No se ha introducido el token correctamente'});
+								if(!idAuthorizedUpdated){
+									res.status(404).send({message:'Error al actualizar el token del usuario'});
+								}else{
+									User.updateMany({_id:userId},{$set: {role:'ROLE_LOCUTOR'}},(err,userUpdated)=>{
+										if(err){
+											res.status(404).send({message:'No se ha podido actualizar el rol'});
 										}else{
-											res.status(200).send({idAuthorizedUpdated:idAuthorizedUpdated});
+											if(!userUpdated){
+												res.status(404).send({message:'No se ha introducido el token correctamente'});
+											}else{
+												res.status(200).send({idAuthorizedUpdated:idAuthorizedUpdated});
+											}
 										}
-									}
-								})
+									})
+								}
 							}
-						}
-					})
+						})
+					}else{
+						res.status(404).send({message:'Token expirado'});
+					}
 				}else{
-					res.status(404).send({message:'Token expirado'});
+					res.status(404).send({message:'Token incorrecto'});
 				}
 			}
 		}

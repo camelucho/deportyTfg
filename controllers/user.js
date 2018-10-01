@@ -196,6 +196,7 @@ function confirmarTokenTelegram(req,res){
 	
 	var update = new Object();
 	TelegramData.find({user:userId,token:token},(err,telegramDataFinded)=>{
+		console.log(telegramDataFinded);
 		if(err){
 			res.status(500).send({message:'Error en el servidor'});
 		}else{

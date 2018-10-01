@@ -193,7 +193,7 @@ function generarTokenTelegram(req,res){
 function confirmarTokenTelegram(req,res){
 	var userId = req.params.id;
 	var token= req.body.token;
-	
+	console.log(token);
 	var update = new Object();
 	TelegramData.find({user:userId,token:token},(err,telegramDataFinded)=>{
 		if(err){
